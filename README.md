@@ -14,5 +14,4 @@
         - markolab
         - zftftb
         - robofinch
-      3. Make sure the recording computer's 'recording' folder is mounted on your computer using `cmd+shift+k` if you use a mac, and search for recoring computer 2
-    
+      3. Make sure the recording computer's 'recording' folder is mounted on your computer using `cmd+shift+k` if you use a mac, and search for recording computer 2
