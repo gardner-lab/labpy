@@ -1,6 +1,7 @@
 # Gardner Lab python scripts
 
-## A collection of python scripts people in the lab uses to speed up parts of their workflow
+## A collection of python scripts people in the lab use to extract audio form recording room computers, and distribute these recordings to a users local computer for analysis.
+
 ----
 
 ### Pieces:
