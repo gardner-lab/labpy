@@ -7,8 +7,19 @@ import smtplib
 from email.mime.text import MIMEText
 import argparse
 import time
+import sys
 
 __author__ = 'Winthrop Gillis'
+
+def find_matlab():
+    '''Returns the most recent MATLAB in the Applications folder'''
+    if sys.platform == 'darwin':
+        matlabs = sorted(glob.glob('/Applications/MATLAB*'), reverse=True)
+    else:
+        # TODO: add compatibility for windows OS
+        pass
+    return matlabs[0]
+
 
 def main():
     start = time.time()
@@ -20,6 +31,7 @@ def main():
     args = parser.parse_args()
     channel_number = args.c
     bird_name = args.b
+    matlab_path = os.path.join(find_matlab(), 'bin', 'matlab')
     # assumes you run this in the main directory you want to store your data
     directory = args.d
     if args.day:
@@ -50,7 +62,7 @@ def main():
     os.chdir(folder_path)
     if wavfiles:
         print('Running Matlab')
-        subprocess.check_output(['/Applications/MATLAB_R2015a.app/bin/matlab', '-nodesktop', '-nosplash', '-r',
+        subprocess.check_output([matlab_path, '-nodesktop', '-nosplash', '-r',
                     "zftftb_song_chop(pwd, 'song_duration', 0.65, 'audio_pad', 0.5, 'song_ratio', 2.8, 'song_thresh', 0.2); exit"])
     # remove all 40 second snippets
         files = glob.glob(os.path.join(folder_path, '*.wav'))
