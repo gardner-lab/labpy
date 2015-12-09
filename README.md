@@ -16,3 +16,25 @@
         - zftftb
         - robofinch
       3. Make sure the recording computer's 'recording' folder is mounted on your computer using `cmd+shift+k` if you use a mac, and search for recording computer 2
+      4. to set up to run daily, set up a crontab in terminal. To do this in nano,, type:
+      ```
+      env EDITOR=nano crontab -e
+      ```
+        To run every day, at 10PM:
+        ```
+        % 0 21  * * * python /'PY_PATH'/lappy/get_todays_wav_files.py -l -b BIRDID -c BOXID -d /DESTINATION_PATH
+        ```
+        Where...
+        PY_PATH is the path to the dir containing the python scripts,
+        BIRDID is the bird ID
+        BOXID is the box ID
+        DESTINATION PATH is the path where the data is pumped out
+        
+        A log file, to be emailed daily right before midnight, can be exported as well:
+        ```
+        59 23 * * * python /PY_PATh/lappy/send_log_file.py example@example.edu
+        ```
+        
+        
+
+
