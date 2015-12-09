@@ -33,9 +33,6 @@
         Each bird should be entered in on a different line, separated by ~20 minutes, to assure jobs don't accumulate in the cue.
 
         A log file, to be emailed daily right before midnight, can be exported as well:
-
  ```
   59 23 * * * python /PY_PATh/lappy/send_log_file.py example@example.edu
  ```
-
- 
