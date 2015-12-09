@@ -13,6 +13,7 @@ __author__ = 'Winthrop Gillis'
 
 def find_matlab():
     '''Returns the most recent MATLAB in the Applications folder'''
+    #Right now only runs on MacOS
     if sys.platform == 'darwin':
         matlabs = sorted(glob.glob('/Applications/MATLAB*'), reverse=True)
     else:
@@ -28,6 +29,7 @@ def main():
     parser.add_argument('-d', type=str)
     parser.add_argument('-c', type=str)
     parser.add_argument('--day', type=str)
+    parser.add_argument('-l', action='store_true', help='Appends output to a log file')
     args = parser.parse_args()
     channel_number = args.c
     bird_name = args.b
@@ -68,21 +70,32 @@ def main():
         files = glob.glob(os.path.join(folder_path, '*.wav'))
         for file in files:
             os.remove(file)
+        if args.l:
+            with open('/tmp/gbf.log', 'a') as f:
+                msg = 'Bird: {0}\nChannel: {1}\nDate:{2}\nSaved path: {3}\n{4}\n'
+                msg = msg.format(bird_name, channel_number, file_filter, folder_path, '-'*10)
+                f.write(msg)
+            # add iformation to log file and have the user invoke another script
+            # to send the file over email
+            pass
+        else:
+            message = ''.join(['Sound files for {0} in recording box {1} have been moved to {2}',
+                                '\n\nIf you are not recording from {0} any more please remove',
+                                'the line:\n\n"python get_todays_wav_files.py -b {0} -c {1} -d {3}"\n\',
+                                'from your crontab with "crontab -e']).format(bird_name, channel_number, folder_path, directory)
 
-        message = ('Sound files for {0} in recording box {1} have been moved to {2}\
-                    \n\nIf you are not recording from {0} any more please remove \
-    the line:\n\n"python get_todays_wav_files.py -b {0} -c {1} -d {3}"\n\
-    from your crontab with "crontab -e"'
-                   .format(bird_name, channel_number, folder_path, directory))
-
-        msg = MIMEText(message)
-        msg['Subject'] = '{0}\'s recording has been saved'.format(bird_name)
-        msg['From'] = 'Winthrop Gillis (work computer)'
-        msg['To'] = 'wgillis@bu.edu'
-        s = smtplib.SMTP('smtp.bu.edu')
-        s.sendmail('win_work_computer@glab.com', 'wgillis@bu.edu', msg.as_string())
-        s.quit()
-
+            msg = MIMEText(message)
+            msg['Subject'] = '{0}\'s recording has been saved'.format(bird_name)
+            msg['From'] = 'Winthrop Gillis (work computer)'
+            msg['To'] = 'wgillis@bu.edu'
+            s = smtplib.SMTP('smtp.bu.edu')
+            s.sendmail('win_work_computer@glab.com', 'wgillis@bu.edu', msg.as_string())
+            s.quit()
+    elif args.l:
+        with open('/tmp/gbf.log', 'a') as f:
+            msg = 'No wav files found for bird {0} on {1}'
+            msg = msg.format(bird_name, file_filter)
+            f.write(msg)
     else:
         print('No wav files found')
 
