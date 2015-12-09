@@ -29,15 +29,13 @@
         BIRDID is the bird ID
         BOXID is the box ID
         DESTINATION PATH is the path where the data is pumped out
-        
-        Each bird should be intered in on a seperate line, seperated by ~20 minutes, to assue jobs don't accumulate in the cue.
-        
-        
+
+        Each bird should be entered in on a different line, separated by ~20 minutes, to assure jobs don't accumulate in the cue.
+
         A log file, to be emailed daily right before midnight, can be exported as well:
+
  ```
   59 23 * * * python /PY_PATh/lappy/send_log_file.py example@example.edu
  ```
-        
-        
 
-
+ 
