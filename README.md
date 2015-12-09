@@ -20,20 +20,23 @@
       ```
       env EDITOR=nano crontab -e
       ```
-        To run every day, at 10PM:
-        ```
-        % 0 21  * * * python /'PY_PATH'/lappy/get_todays_wav_files.py -l -b BIRDID -c BOXID -d /DESTINATION_PATH
-        ```
+        To run every day,( for each bird) at 10PM:
+ ```
+  0 21  * * * python /'PY_PATH'/lappy/get_todays_wav_files.py -l -b BIRDID -c BOXID -d /DESTINATION_PATH
+ ```
         Where...
         PY_PATH is the path to the dir containing the python scripts,
         BIRDID is the bird ID
         BOXID is the box ID
         DESTINATION PATH is the path where the data is pumped out
         
+        Each bird should be intered in on a seperate line, seperated by ~20 minutes, to assue jobs don't accumulate in the cue.
+        
+        
         A log file, to be emailed daily right before midnight, can be exported as well:
-        ```
-        59 23 * * * python /PY_PATh/lappy/send_log_file.py example@example.edu
-        ```
+ ```
+  59 23 * * * python /PY_PATh/lappy/send_log_file.py example@example.edu
+ ```
         
         
 
