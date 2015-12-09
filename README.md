@@ -24,6 +24,7 @@
         ```bash
         % 0 21  * * * python /'PY_PATH'/lappy/get_todays_wav_files.py -l -b BIRDID -c BOXID -d /DESTINATION_PATH
         ```
+
         Where...
         PY_PATH is the path to the dir containing the python scripts,
         BIRDID is the bird ID
@@ -33,6 +34,6 @@
         Each bird should be entered in on a different line, separated by ~20 minutes, to assure jobs don't accumulate in the cue.
 
         A log file, to be emailed daily right before midnight, can be exported as well:
- ```bash
-  59 23 * * * python /PY_PATh/lappy/send_log_file.py example@example.edu
- ```
+ 		```bash
+  		59 23 * * * python /PY_PATh/lappy/send_log_file.py example@example.edu
+ 		```
