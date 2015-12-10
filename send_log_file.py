@@ -7,11 +7,11 @@ import sys
 def main():
     if len(sys.argv) < 2:
         print('You need to supply an email address to this program!')
-        raise new Exception('No Email Supplied')
+        raise Exception('No Email Supplied')
     else:
         email_address = sys.argv[1]
     if os.path.exists('/tmp/gbf.log'):
-        with open('tmp.log', 'r') as f:
+        with open('/tmp/gbf.log', 'r') as f:
             msg = f.read()
             mail = MIMEText(msg)
             mail['Subject'] = 'Today\'s Birdsong Saving Log'
