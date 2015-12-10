@@ -81,8 +81,8 @@ def main():
         else:
             message = ''.join(['Sound files for {0} in recording box {1} have been moved to {2}',
                                 '\n\nIf you are not recording from {0} any more please remove',
-                                'the line:\n\n"python get_todays_wav_files.py -b {0} -c {1} -d {3}"\n\',
-                                'from your crontab with "crontab -e']).format(bird_name, channel_number, folder_path, directory)
+                                'the line:\n\n"python get_todays_wav_files.py -b {0} -c {1} -d {3}"\n',
+                                'from your crontab with "crontab -e"']).format(bird_name, channel_number, folder_path, directory)
 
             msg = MIMEText(message)
             msg['Subject'] = '{0}\'s recording has been saved'.format(bird_name)
