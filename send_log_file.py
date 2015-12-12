@@ -5,9 +5,9 @@ import sys
 
 
 def main():
-    if len(sys.argv) < 2:
+    if len(sys.argv) < 1:
         print('You need to supply an email address to this program!')
-        raise Exception('No Email Supplied')
+        raise ValueError('No Email Supplied')
     else:
         email_address = sys.argv[1]
     if os.path.exists('/tmp/gbf.log'):
