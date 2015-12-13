@@ -17,7 +17,7 @@ def main():
     if check_for_changes():
         dirpath = os.path.dirname(os.path.realpath(__file__))
         print('Adding this directory to your bash profile...')
-        with open(os.path.expanduser('~') + '.bash_profile', 'a') as f:
+        with open(os.path.expanduser('~') + '/.bash_profile', 'a') as f:
             # f.write('\n\n#Added by add_to_bin.py from the labpy github directory\n')
             # f.write('export PATH="$PATH:{}"\n\n'.format(dirpath))
             pass
