@@ -18,11 +18,10 @@ def main():
         dirpath = os.path.dirname(os.path.realpath(__file__))
         print('Adding this directory to your bash profile...')
         with open(os.path.expanduser('~') + '/.bash_profile', 'a') as f:
-            # f.write('\n\n#Added by add_to_bin.py from the labpy github directory\n')
-            # f.write('export PATH="$PATH:{}"\n\n'.format(dirpath))
-            pass
+            f.write('\n\n#Added by add_to_bin.py from the labpy github directory\n')
+            f.write('export PATH="$PATH:{}"\n\n'.format(dirpath))
         print('Making get_todays_wav_files an executable...')
-        # subprocess.call(['chmod', '+x', 'get_todays_wav_files.py'])
+        subprocess.call(['chmod', '+x', 'get_todays_wav_files.py'])
         print('Prepending your python path to that file...')
         with open('get_todays_wav_files.py', 'r') as f:
             pypath = subprocess.check_output(['which', 'python']).decode('utf-8')
