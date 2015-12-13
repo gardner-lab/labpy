@@ -25,7 +25,7 @@ def main():
         # subprocess.call(['chmod', '+x', 'get_todays_wav_files.py'])
         print('Prepending your python path to that file...')
         with open('get_todays_wav_files.py', 'r+') as f:
-            pypath = str(subprocess.check_output(['which', 'python']))
+            pypath = str(subprocess.check_output(['which', 'python']).encode('utf-8'))
             print(pypath.encode('utf-8'))
             # contents = f.read()
             # contents = '#!' + contents
