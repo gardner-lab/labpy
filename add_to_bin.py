@@ -4,7 +4,7 @@ import os
 def check_for_changes():
     if os.path.exists('.git'):
         output = subprocess.check_output(['git', 'status'])
-        if 'not staged' in str(output):
+        if 'not staged' in str(output) or 'Changes to be' in str(output):
             print('You have made changes to this repo, please commit them before running this')
             raise Exception('You have git changes! Please commit!')
         else:
