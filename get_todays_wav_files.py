@@ -93,8 +93,8 @@ def main():
             s.quit()
     elif args.l:
         with open('/tmp/gbf.log', 'a') as f:
-            msg = 'No wav files found for bird {0} on {1}'
-            msg = msg.format(bird_name, file_filter)
+            msg = 'No wav files found for bird {0} on {1}\n{2}\n'
+            msg = msg.format(bird_name, file_filter. '-'*10)
             f.write(msg)
     else:
         print('No wav files found')
