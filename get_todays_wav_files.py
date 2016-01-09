@@ -72,12 +72,11 @@ def main():
             os.remove(file)
         if args.l:
             with open('/tmp/gbf.log', 'a') as f:
-                msg = 'Bird: {0}\nChannel: {1}\nDate:{2}\nSaved path: {3}\n{4}\n'
+                msg = 'Bird: {0}\nChannel: {1}\nDate: {2}\nSaved path: {3}\n{4}\n'
                 msg = msg.format(bird_name, channel_number, file_filter, folder_path, '-'*10)
                 f.write(msg)
             # add iformation to log file and have the user invoke another script
             # to send the file over email
-            pass
         else:
             message = ''.join(['Sound files for {0} in recording box {1} have been moved to {2}',
                                 '\n\nIf you are not recording from {0} any more please remove',
