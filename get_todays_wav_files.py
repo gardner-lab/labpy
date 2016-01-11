@@ -12,14 +12,14 @@ import sys
 __author__ = 'Winthrop Gillis'
 
 def find_matlab():
-    '''Returns the most recent MATLAB in the Applications folder'''
+    '''Returns the most recent installed MATLAB in the Applications folder'''
     #Right now only runs on MacOS
     if sys.platform == 'darwin':
         matlabs = sorted(glob.glob('/Applications/MATLAB*'), reverse=True)
     else:
         # TODO: add compatibility for windows OS
         pass
-    return matlabs[0]
+    return os.path.join(matlabs[0], 'bin', 'matlab')
 
 
 def main():
@@ -33,7 +33,7 @@ def main():
     args = parser.parse_args()
     channel_number = args.c
     bird_name = args.b
-    matlab_path = os.path.join(find_matlab(), 'bin', 'matlab')
+    matlab_path = find_matlab()
     # assumes you run this in the main directory you want to store your data
     directory = args.d
     if args.day:
@@ -48,25 +48,26 @@ def main():
     if not os.path.exists(folder_path):
         os.makedirs(folder_path)
     # move files one by one to new folder
-    recording_folder = os.path.join('/Volumes', 'recording', '{0}-WAV'.format(channel_number))
-    images_folder = os.path.join('/Volumes', 'recording', '{0}-IMG'.format(channel_number))
+    recording_path = get_recording_path()
+    recording_folder = os.path.join(recording_path, '{0}-WAV'.format(channel_number))
+    images_folder = os.path.join(recording_path, '{0}-IMG'.format(channel_number))
     wavfiles = glob.glob(os.path.join(recording_folder, '*{0}*.wav'.format(file_filter)))
     print('Moving files')
-    for file in wavfiles:
-        shutil.move(file, folder_path)
+    for f in wavfiles:
+        shutil.move(f, folder_path)
 
     if wavfiles:
         files = glob.glob(os.path.join(images_folder, '*{0}*.jpg'.format(file_filter)))
         print('Removing Images')
-        for file in files:
-            os.remove(file)
+        for f in files:
+            os.remove(f)
     # run matlab script on files for song detection
     os.chdir(folder_path)
     if wavfiles:
         print('Running Matlab')
         subprocess.check_output([matlab_path, '-nodesktop', '-nosplash', '-r',
                     "zftftb_song_chop(pwd, 'song_duration', 0.65, 'audio_pad', 0.5, 'song_ratio', 2.8, 'song_thresh', 0.2); exit"])
-    # remove all 40 second snippets
+        # remove all 40 second snippets
         files = glob.glob(os.path.join(folder_path, '*.wav'))
         for file in files:
             os.remove(file)
@@ -101,6 +102,15 @@ def main():
     # send email of summary and disk usage
     end = time.time()
     print('Done. Finished in {} seconds'.format(end-start))
+
+def get_recording_path():
+    path = '/Volumes'
+    if os.path.exists(os.path.join(path, 'recording')):
+        return os.path.join(path, 'recording')
+    elif os.path.exists(os.path.join(path, 'raid1', 'recording')):
+        return os.path.join(path, 'raid1', 'recording')
+    else:
+        raise OSError('Recording path does not exist! Please mount drive')
 
 if __name__ == '__main__':
     main()
