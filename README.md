@@ -21,6 +21,29 @@
   env EDITOR=nano crontab -e
   ```
 
+# New and Improved, use a configurable file instead of populating a crontab!
+Example:
+```json
+{
+  "output": "/Volumes/Untitled/winSongData/",
+  "birds": [
+    {"name": "lny29-post",
+    "channel": "11"},
+    {"name": "lny29-post",
+    "channel": "11",
+    "output": "/Volumes/Untitled/winSongData/"}
+  ]
+}
+```
+And add this to your crontab:
+
+`0 21 * * * python PATH/get_todays_wav_files.py --config PATH_TO_CONFIG`
+
+and:
+
+`59 23 * * * python PY_PATH/send_log_file.py example@gmail.com`
+
+
 To run every day, (for each bird) at 10PM:
 ```bash
 0 21 * * * python PY_PATH/get_todays_wav_files.py -l -b BIRDID -c BOXID -d DESTINATION_PATH
