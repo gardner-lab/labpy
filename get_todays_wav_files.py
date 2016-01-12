@@ -1,3 +1,4 @@
+#!/Users/wgillis/anaconda/bin/python
 import datetime
 import os
 import subprocess
@@ -29,6 +30,7 @@ def main():
     parser.add_argument('-d', type=str)
     parser.add_argument('-c', type=str)
     parser.add_argument('--day', type=str)
+    paresr.add_argument('--config', action='store_true')
     parser.add_argument('-l', action='store_true', help='Appends output to a log file')
     args = parser.parse_args()
     channel_number = args.c
