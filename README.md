@@ -43,6 +43,7 @@ and:
 
 `59 23 * * * python PY_PATH/send_log_file.py example@gmail.com`
 
+# Otherwise, use the old method:
 
 To run every day, (for each bird) at 10PM:
 ```bash
