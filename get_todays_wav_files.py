@@ -67,7 +67,10 @@ def get_imagefiles(path, file_filter):
 
 def transfer_files(files, path):
     for f in files:
-        shutil.move(f, path)
+        try:
+            shutil.move(f, path)
+        except Exception as e:
+            print(e)
     return
 
 def remove_files(files):
@@ -132,10 +135,10 @@ def cli(args):
             f.write(msg)
 
 
-def config(config_path):
-    with open(config_path, 'r') as f:
+def config(args):
+    with open(args.config, 'r') as f:
         birds = json.load(f)
-    day = get_date()
+    day = get_date(args)
     file_filter = get_file_filter(day)
 
     # birds is an array of config variables
@@ -180,7 +183,7 @@ def main():
     args = parser.parse_args()
 
     if args.config:
-        config(args.config)
+        config(args)
     else:
         cli(args)
 
