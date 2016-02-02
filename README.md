@@ -9,7 +9,7 @@
 - Python script that grabs recording files from our recording room computer, moves them to the user's computer, and extracts portions of the file that contain bird calls and songs.
 
 #### How to install:
-  1. Make sure you have MATLAB also installed on your computer. This script assumes MATLAB is located at '/Applications/MATLAB_R2015a.app/bin'
+  1. Make sure you have MATLAB also installed on your computer. This script looks for any MATLAB installation in the Applications folder on your Mac.
   2. Download Jeff Markowitz's song extraction code [here](https://github.com/jmarkow/). Repos needed are:
     - [markolab](https://github.com/jmarkow/markolab)
     - [zftftb](https://github.com/jmarkow/zftftb)
