@@ -2,52 +2,32 @@
   "output": "/Volumes/Untitled/winSongData",
   "birds": [
     {
-      "name": "lny29-post",
+      "name": "lny92rb",
       "channel": 11
     },
     {
-      "name": "lny37",
-      "channel": 3
+      "name": "lny25rb",
+      "channel": 10
     },
     {
-      "name": "lny64",
-      "channel": 6
+      "name": "lny83rb",
+      "channel": 14
     },
     {
-      "name": "lny69",
-      "channel": 7
-    },
-    {
-      "name": "lny26rb-post",
-      "channel": 18
-    },
-    {
-      "name": "lny31rb-post",
-      "channel": 19
-    },
-    {
-      "name": "lny33-post",
-      "channel": 27
+      "name": "lny93rb",
+      "channel": 26
     },
     {
       "name": "lny27-post",
       "channel": 17
     },
     {
-      "name": "lno48rlg",
-      "channel": 2
-    },
-    {
-      "name": "lny73rb",
-      "channel": 5
-    },
-    {
-      "name": "lny76rb",
-      "channel": 26
-    },
-    {
-      "name": "lor92",
+      "name": "tentative_bird_from_dawit",
       "channel": 15
+    },
+    {
+      "name": "jun juvenile 1",
+      "channel": 4
     }
   ]
 }
