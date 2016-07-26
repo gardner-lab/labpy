@@ -1,4 +1,4 @@
-#!/Users/wgillis/anaconda/bin/python
+#!/usr/bin/env python
 import datetime
 import os
 from os.path import join
