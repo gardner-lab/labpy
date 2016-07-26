@@ -52,13 +52,19 @@ the output directories for each bird (or all the birds if you choose).
 ```
 
 ### Crontab set-up
+
 And add this to your crontab:
 
-`0 21 * * * python PATH/get_todays_wav_files.py --config PATH_TO_CONFIG`
+`0 21 * * * python [path to this script]/get_todays_wav_files.py --config [path to config file]`
+
+`0 21 * * *` means it will run this script every day at 21:00 (or 11:00 PM).
+
 
 and:
 
 `59 23 * * * python PY_PATH/send_log_file.py example@gmail.com`
+
+The second script will send you an email 
 
 # Otherwise, use the old method:
 
