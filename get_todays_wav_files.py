@@ -21,7 +21,7 @@ def find_matlab():
         matlabs = sorted(glob.glob('/Applications/MATLAB*'), reverse=True)
     else:
         # TODO: add compatibility for windows OS
-        pass
+        raise OSError('Script optimized for MacOS')
     return join(matlabs[0], 'bin', 'matlab')
 
 def get_recording_path():
