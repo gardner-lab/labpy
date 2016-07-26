@@ -20,7 +20,16 @@ that contain bird calls and songs. It can be run as an executable.
 When run with the proper commandline arguments, this script will move
 files from the GardnerLab Recording Room Computer. These files are only
 associated with the recording channel(s) and the date of recording
-that you specify.
+that you specify. The files this script moves are located in the
+[channel_number]-WAV folder. After moving, it deletes the images
+(located in the [channel_number]-IMG folder) associated with those
+audio files. If the script doesn't find any files, it quits and
+will let the user know there weren't any audio files found. Then
+it runs a matlab script in the folder that the audio files were moved
+to, called `zftftb_song_chop`. It 'chops' the files into small chunks
+of only a couple songs per file, which saves a lot of disk space.
+After this, the script removes the original, larger files, and
+will then let the user know it has run successfully.
 
 ### Installation Prerequisites:
 
