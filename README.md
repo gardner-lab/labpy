@@ -1,11 +1,18 @@
 # Scripts Used By the Gardner Lab
 
+## Basic Info
+
 A collection of python scripts people in the lab use to extract audio form
 recording room computers, and distribute these recordings to a users local
 computer for analysis.
 
 **Important:** some of these scripts rely on the OSX file structure and may
 not work as intended on a Windows machine (for instance: Matlab install dir).
+
+### Prerequisites
+
+1. Python installed on your computer
+1. A Mac
 
 The mose useful file is:
 
@@ -33,7 +40,8 @@ will then let the user know it has run successfully.
 
 ### Installation Prerequisites:
 
-  1. Make sure you have MATLAB also installed on your computer. This script assumes MATLAB is located in your `/Applications` folder
+  1. Make sure you have MATLAB also installed on your computer. This script
+     assumes MATLAB is located in your `/Applications` folder
   1. Download Jeff Markowitz's song extraction code [jmarkow](https://github.com/jmarkow/). Repos needed are:
       - [markolab](https://github.com/jmarkow/markolab)
       - [zftftb](https://github.com/jmarkow/zftftb)
