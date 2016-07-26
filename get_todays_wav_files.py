@@ -95,9 +95,6 @@ def cli(args):
     # the following line for debugging purposes
     # print(file_filter)
 
-    # makes a new folder for every day
-    folder_path = make_day_folder(directory, bird_name, day)
-
     # move files one by one to new folder
     recording_folder, images_folder = get_input_folders(file_filter, channel_number)
 
@@ -107,10 +104,12 @@ def cli(args):
     # print('Moving files')
 
     if wavfiles:
+        # makes a new folder for every day
+        folder_path = make_day_folder(directory, bird_name, day)
+        # move files into the day folder for processing
         transfer_files(wavfiles, folder_path)
         img_files = get_imagefiles(images_folder, file_filter)
-        # for debugging
-        # print('Removing Images')
+
         remove_files(img_files)
 
     # run matlab script on files for song detection
