@@ -15,6 +15,13 @@ This is a python script that copies audio files from our recording room computer
 moves them to the user's computer, and extracts only the segments of the file
 that contain bird calls and songs. It can be run as an executable.
 
+### Script summary
+
+When run with the proper commandline arguments, this script will move
+files from the GardnerLab Recording Room Computer. These files are only
+associated with the recording channel(s) and the date of recording
+that you specify.
+
 ### Installation Prerequisites:
 
   1. Make sure you have MATLAB also installed on your computer. This script assumes MATLAB is located in your `/Applications` folder
@@ -62,15 +69,23 @@ And add this to your crontab:
 
 and:
 
-`59 23 * * * python PY_PATH/send_log_file.py example@gmail.com`
+`0 8 * * * python [path to this script]/send_log_file.py example@gmail.com`
 
-The second script will send you an email 
+The second script will send an email to example@gmail.com at 8:00 AM
+to give a status update from the script. It will send you information
+on which audio files were copied over, and if the script could not find
+any new files for the day.
 
-# Otherwise, use the old method:
+### The Old Method
+
+This method was the first implementation, and still works, put is not
+recommended to use, because it is tedious to write the following code
+for each bird that needs files copied. It allowed for more errors.
 
 To run every day, (for each bird) at 10PM:
+
 ```bash
-0 21 * * * python PY_PATH/get_todays_wav_files.py -l -b BIRDID -c BOXID -d DESTINATION_PATH
+0 21 * * * python PY_PATH/get_todays_wav_files.py -b BIRDID -c BOXID -d DESTINATION_PATH
 ```
 
 Where...
@@ -86,10 +101,10 @@ DESTINATION PATH = the path where you want to save the processed data
 
 Each bird should be entered in on a different line, separated by ~20 minutes, to assure the network where the files copy through does not choke.
 
-You can choose to send an email with a summary of all birds copied over, using the `-l` flag, or per bird which is the default. To send the summary email, a second script needs to be run, after all the others:
+The same summary email as above can be sent with the same command:
 
 ```bash
-59 23 * * * python PY_PATH/send_log_file.py example@gmail.com
+0 8 * * * python PY_PATH/send_log_file.py example@gmail.com
 ```
 
 You need to supply an email for this script, or else it will throw an exception.
